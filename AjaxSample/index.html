@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function doAjax() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("ctlResults").innerHTML = this.responseText;
+                }
+            };
+            //Ajax Request Formula:
+            // Ajax.aspx?cmd=txtCommand&arg=txtArgument
+            let cmd = document.getElementById("select").value;
+            let arg = document.getElementById("txtArgument").value;
+            let url = "Ajax.aspx?cmd=" + cmd + "&arg=" + arg;
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <h1>Moe's Ajax Demo!!</h1>
+    <form>
+        <input type="radio" name="select" value="add" checked /> Add <br />
+        <input type="radio" name="select" value="hello" /> Hello!
+    </form>
+    <span>Command:  </span> <input type="text" id="txtCommand" /> <br />
+    <span>Argument:  </span> <input type="text" id="txtArgument" /> <br />
+    <button onclick="doAjax()">Run</button>
+    <h2>Results</h2>
+    <div id="ctlResults"></div>
+</body>
+</html>
